@@ -47,7 +47,7 @@ settings = {
 
 # In[78]:
 
-path = "../input/lstm100num/input/"
+path = "../input/"
 file_list = os.listdir(path)
 trn_data = []
 val_data = []
