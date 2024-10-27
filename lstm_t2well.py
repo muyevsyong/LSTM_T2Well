@@ -185,7 +185,7 @@ ckpt = tf.keras.callbacks.ModelCheckpoint('./checkpoint',
 history = model.fit(trn_ds,
     batch_size=settings["batch_size"],
     epochs=settings["epochs_num"],
-    shuffle=True,  #默认为True,在每一个batch里面进行shuffle
+    shuffle=True,  #The Default value is True. Perform a Shuffle in each batch
     verbose=2,
     validation_data=val_ds,
     callbacks=[early_stopping, ckpt])
@@ -199,7 +199,7 @@ model.load_weights("./checkpoint")
 
 
 def myMase(pred, true, m=1):
-    '''m是周期长度'''
+    '''m is the period size.'''
     return np.mean(np.abs(pred-true))/np.mean(np.abs(true[m:] - true[:-m]))
 
 def myRmse(pred, true):
@@ -261,24 +261,24 @@ print(rmse2)
 print(myRmse(val_y[:-1], val_y[1:]))
 
 
-# **保存**
+# **SAVE**
 
 # In[93]:
 
 
-tf.saved_model.save(model, './')     #保存模型
+tf.saved_model.save(model, './')     #Save models
 
 #def save_variable(v,filename):
-#    f=open(filename,'wb')          #打开或创建名叫filename的文档。
-#    pickle.dump(v,f)               #在文件filename中写入v
-#    f.close()                      #关闭文件，释放内存。
+#    f=open(filename,'wb')          #Open or create a document named filename.
+#    pickle.dump(v,f)               # Write the parameter v to the file filename.
+#    f.close()                      # Close the file to free memory.
 #    return filename
 
 #save_variable(pred_trn,'./pred_trn0')
 #save_variable(trn_y,'./trn_y0')
 #save_variable(pred_val,'./pred_val0')
 #save_variable(val_y,'./val_y0')
-#保存数据
+# Save data.
 pred_trn0= pd.DataFrame(
         np.concatenate([pred_trn], axis=1))
 pred_trn0.to_csv('./pred_tr.csv')
